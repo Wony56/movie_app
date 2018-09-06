@@ -12,7 +12,6 @@ class App extends Component {
 
   _renderMovies = () => {
     const movies = this.state.movies.map((movie) => {
-      console.log(movie);
       return <Movie 
         title={movie.title}
         poster={movie.medium_cover_image}
@@ -20,8 +19,8 @@ class App extends Component {
         synopsis={movie.synopsis}
         key={movie.id}
       />
-    })
-    return movies
+    });
+    return movies;
   }
 
   _getMovies = async () => {
@@ -40,9 +39,10 @@ class App extends Component {
 
 
   render() {
+    const {movies} = this.state;
     return (
-      <div className="App">
-        {this.state.movies ? this._renderMovies() : 'Loading...'}
+      <div className={movies ? "App" : "App--loading"}>
+        {movies ? this._renderMovies() : 'Loading'}
       </div>
     );
   }
